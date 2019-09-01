@@ -1,0 +1,34 @@
+    def Search_button(self, name):
+        btn_element_selenium = ''
+        while not btn_element_selenium:
+            soup = BeautifulSoup(self.driver.page_source,"html.parser")
+            btn_list_soup = soup.select('button')
+            btn_element_soup = next(iter(list(filter(lambda x: name in x.text, btn_list_soup))), None)
+            btn_element_selenium = next(iter(self.driver.find_elements_by_xpath(xpath_soup(btn_element_soup))))
+
+        return btn_element_selenium
+
+
+
+        # # # # username = "USERNAME"
+        # # # # password = "PASSWORD"
+        
+        # # # driver_path = os.path.join(os.path.dirname(__file__), r'drivers\\geckodriver.exe')
+        # # # log_path = os.path.join(os.path.dirname(__file__), r'geckodriver.log')
+        # # # driver = webdriver.Firefox(executable_path=driver_path, log_path=log_path)
+        # # # driver.maximize_window()
+        # # # driver.get("https://www.instagram.com/")
+        # # # time.sleep(5)
+        # # # soup = BeautifulSoup(driver.page_source,"html.parser")
+        # # # element_a_list = soup.select('a')
+        # # # element = next(iter(list(filter(lambda x: "Conecte-se" in x.text, element_a_list))), None)
+        # # # element = driver.find_element_by_xpath(xpath_soup(element))
+        # # # element.click()
+        # # # #time.sleep(5)
+        # # # username = driver.find_element_by_css_selector(f"[name$='username']")
+        # # password = driver.find_element_by_css_selector(f"[name$='password']")
+        # # username.send_keys("USERNAME")
+        # # password.send_keys("PASSWORD")
+        # btn_selenium = self.Search_button('Entrar')
+        # btn_selenium.click()
+        # #time.sleep(5)
